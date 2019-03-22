@@ -3,12 +3,18 @@ import { renderToString } from "react-dom/server";
 import Home from "../client/components/Home";
 import { StaticRouter } from "react-router-dom";
 import Routes from "../client/Routes";
+import { Provider} from "react-redux";
+import createStore from "./createStore";
 
-module.exports = (req)=> {
+
+
+module.exports = (req, store)=> {
     const content = renderToString(
-        <StaticRouter context={{}} location={req.path}>
-            <Routes/>
-        </StaticRouter>
+        <Provider store={createStore()}>
+            <StaticRouter context={{}} location={req.path}>
+                <Routes/>
+            </StaticRouter>
+        </Provider>
     );
     return `
         <html>
