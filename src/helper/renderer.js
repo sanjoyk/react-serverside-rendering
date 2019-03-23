@@ -20,8 +20,8 @@ module.exports = (req, store)=> {
         <html>
             <body>
                 <div id="app">${content}</div>
-                <script src="bundle.js"></script>
                 <script>window.INITIAL_STATE=${serialize(store.getState())}</script>
+                <script src="bundle.js"></script>
             </body>
         </html>
     `;
