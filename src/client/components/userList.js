@@ -16,7 +16,9 @@ class UsersList extends Component{
         return(
             <div>
                 Here's a buig list of users:
-                {this.renderUsers()}
+                <ul>
+                    {this.renderUsers()}
+                </ul>
             </div>
         )
     }

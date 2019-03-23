@@ -1,12 +1,10 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
-import Home from "../client/components/Home";
 import { StaticRouter } from "react-router-dom";
 import {renderRoutes} from 'react-router-config';
 import Routes from "../client/Routes";
 import { Provider} from "react-redux";
-import createStore from "./createStore";
-
+import serialize from "serialize-javascript";
 
 module.exports = (req, store)=> {
     const content = renderToString( 
@@ -23,6 +21,7 @@ module.exports = (req, store)=> {
             <body>
                 <div id="app">${content}</div>
                 <script src="bundle.js"></script>
+                <script>window.INITIAL_STATE=${serialize(store.getState())}</script>
             </body>
         </html>
     `;
